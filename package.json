@@ -1,7 +1,10 @@
 {
-  "name": "sick-fits-frontend",
+  "name": "unfinished-forms-frontend",
   "version": "1.0.0",
-  "description": "Sick Fits! An example React, GraphQL, Next and Apollo",
+  "description": "Unfinished Forms! An example React, GraphQL, Next and Apollo",
+  "engines": {
+    "node": "10.15.1"
+  },
   "main": "index.js",
   "scripts": {
     "dev": "next -p 7777",
