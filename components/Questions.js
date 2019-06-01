@@ -40,19 +40,6 @@ const CREATE_QUESTION_MUTATION = gql`
   }
 `;
 
-const possibleTypes = [
-  {
-    type: "SHORTANSWER",
-    display: "Short Answer"
-  },
-  { type: "PARAGRAPH", display: "Paragraph" },
-  { type: "MUTLIPLECHOICE", display: "Multiple Choice" },
-  {
-    type: "CHECKBOXES",
-    display: "Checkboxes"
-  }
-];
-
 function CreateQuestion({ formId }) {
   function update(cache, payload) {
     // 1. first read the cache
