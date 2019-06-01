@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const NavStyles = styled.ul`
   margin: 0;
@@ -23,7 +23,7 @@ const NavStyles = styled.ul`
       padding: 0 10px;
     }
     &:before {
-      content: '';
+      content: "";
       width: 2px;
       background: ${props => props.theme.lightgrey};
       height: 100%;
@@ -35,8 +35,8 @@ const NavStyles = styled.ul`
     }
     &:after {
       height: 2px;
-      background: red;
-      content: '';
+      background: ${props => props.theme.indigo};
+      content: "";
       width: 0;
       position: absolute;
       transform: translateX(-50%);
@@ -52,6 +52,9 @@ const NavStyles = styled.ul`
         width: calc(100% - 60px);
       }
     }
+    &.signup {
+      color: ${props => props.theme.indigo};
+    }
   }
   @media (max-width: 1300px) {
     border-top: 1px solid ${props => props.theme.lightgrey};
@@ -60,5 +63,23 @@ const NavStyles = styled.ul`
     font-size: 1.5rem;
   }
 `;
+
+// .signup {
+//   position: absolute;
+//   z-index: 10;
+//   top: 10px;
+//   right: 10px;
+//   width: auto;
+//   color: ${props => props.theme.indigo};
+//   border: 1px solid ${props => props.theme.indigo};
+//   font-size: 1.5rem;
+//   font-weight: 500;
+//   padding: 0.8rem 1.6rem;
+//   border-radius: 0.4rem;
+//   :hover {
+//     color: ${props => props.theme.darkIndigo};
+//     border-color: ${props => props.theme.darkIndigo};
+//   }
+// }
 
 export default NavStyles;

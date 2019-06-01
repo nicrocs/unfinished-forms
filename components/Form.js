@@ -17,19 +17,20 @@ class Form extends Component {
   render() {
     const { title, description, id, image } = this.props.form;
     return (
-      <FormStyles>
-        {image && <img src={image} alt={title} />}
-        <Title>
-          <Link
-            href={{
-              pathname: "/form",
-              query: { id }
-            }}
-          >
-            <a>{title}</a>
-          </Link>
-        </Title>
-        <p>{description}</p>
+      <FormStyles background={image}>
+        <div className="form-body">
+          <Title>
+            <Link
+              href={{
+                pathname: "/form",
+                query: { id }
+              }}
+            >
+              <a>{title}</a>
+            </Link>
+          </Title>
+          <p>{description}</p>
+        </div>
         <div className="buttonList">
           <Link
             href={{

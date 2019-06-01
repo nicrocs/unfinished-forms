@@ -8,8 +8,8 @@ import Signout from "./Signout";
 
 const Nav = () => (
   <User>
-    {({ data: { me } }) => {
-      console.log({ me });
+    {({ data }) => {
+      const me = data ? data.me : null;
       return (
         <NavStyles data-test="nav">
           <Link href="/forms">
@@ -35,9 +35,14 @@ const Nav = () => (
             </>
           )}
           {!me && (
-            <Link href="/signup">
-              <a>Sign In</a>
-            </Link>
+            <>
+              <Link href="/signin">
+                <a>Sign In</a>
+              </Link>
+              <Link href="/signup">
+                <a className="signup">Sign Up</a>
+              </Link>
+            </>
           )}
         </NavStyles>
       );

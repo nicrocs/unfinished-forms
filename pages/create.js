@@ -1,11 +1,14 @@
 import CreateForm from "../components/CreateForm";
 import PleaseSignIn from "../components/PleaseSignIn";
+import Page from "../components/Page";
 
 const Create = props => {
   return (
-    <PleaseSignIn>
-      <CreateForm />
-    </PleaseSignIn>
+    <Page>
+      <PleaseSignIn>
+        <CreateForm />
+      </PleaseSignIn>
+    </Page>
   );
 };
 

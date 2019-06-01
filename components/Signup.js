@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
-import Form from "./styles/Form";
+import LoginStyles from "./styles/LoginStyles";
 import Error from "./ErrorMessage";
 import { CURRENT_USER_QUERY } from "./User";
+import Input from "./Input";
 
 const SIGNUP_MUTATION = gql`
   mutation SIGNUP_MUTATION(
@@ -36,7 +37,7 @@ class Signup extends Component {
         refetchQueries={[{ query: CURRENT_USER_QUERY }]}
       >
         {(signup, { error, loading }) => (
-          <Form
+          <LoginStyles
             method="post"
             onSubmit={async e => {
               e.preventDefault();
@@ -45,42 +46,29 @@ class Signup extends Component {
             }}
           >
             <fieldset disabled={loading} aria-busy={loading}>
-              <h2>Sign Up for An Account</h2>
+              <h2>Sign Up</h2>
               <Error error={error} />
-              <label htmlFor="email">
-                Email
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="email"
-                  value={this.state.email}
-                  onChange={this.saveToState}
-                />
-              </label>
-              <label htmlFor="name">
-                Name
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="name"
-                  value={this.state.name}
-                  onChange={this.saveToState}
-                />
-              </label>
-              <label htmlFor="password">
-                Password
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="password"
-                  value={this.state.password}
-                  onChange={this.saveToState}
-                />
-              </label>
-
-              <button type="submit">Sign Up!</button>
+              <Input
+                type="email"
+                label="email"
+                value={this.state.email}
+                onChange={this.saveToState}
+              />
+              <Input
+                type="text"
+                label="name"
+                value={this.state.name}
+                onChange={this.saveToState}
+              />
+              <Input
+                type="password"
+                label="password"
+                value={this.state.password}
+                onChange={this.saveToState}
+              />
+              <button type="submit">Sign Up</button>
             </fieldset>
-          </Form>
+          </LoginStyles>
         )}
       </Mutation>
     );

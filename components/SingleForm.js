@@ -4,23 +4,28 @@ import { Query } from "react-apollo";
 import Error from "./ErrorMessage";
 import styled from "styled-components";
 import Head from "next/head";
+import Questions from "./Questions";
+import { theme } from "../lib/theme";
 
 const SingleFormStyles = styled.div`
+  background-color: ${theme.lightIndigo};
+  background-image: url(${props => props.background});
+  background-repeat: no-repeat;
+  background-size: contain;
   max-width: 1200px;
-  margin: 2rem auto;
-  box-shadow: ${props => props.theme.bs};
-  display: grid;
-  grid-auto-columns: 1fr;
-  grid-auto-flow: column;
+  margin: 0rem auto;
   min-height: 800px;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
+  padding: 10rem;
   .details {
-    margin: 3rem;
+    padding: 2rem;
     font-size: 2rem;
+    background: ${theme.offWhite};
+    min-height: 600px;
+    h2 {
+      color: ${theme.darkgrey};
+    }
+  }
+  .form {
   }
 `;
 
@@ -31,6 +36,10 @@ const SINGLE_FORM_QUERY = gql`
       title
       description
       largeImage
+      questions {
+        question
+        type
+      }
     }
   }
 `;
@@ -49,15 +58,23 @@ class SingleForm extends Component {
           if (!data.form) return <p>No Item Found for {this.props.id}</p>;
           const form = data.form;
           return (
-            <SingleFormStyles>
+            <SingleFormStyles background={form.largeImage}>
               <Head>
                 <title>Forms! | {form.title}</title>
               </Head>
-              <img src={form.largeImage} alt={form.title} />
-              <div className="details">
-                <h2>Viewing {form.title}</h2>
+              <form className="details">
+                <h2>{form.title}</h2>
                 <p>{form.description}</p>
-              </div>
+                {form.questions.map(question => {
+                  console.log({ question });
+                  return (
+                    <div key={question.id}>
+                      <h3>{question.question}</h3>
+                      {question.type === "PARAGRAPH" && <textarea />}
+                    </div>
+                  );
+                })}
+              </form>
             </SingleFormStyles>
           );
         }}

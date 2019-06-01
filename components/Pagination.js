@@ -20,7 +20,7 @@ const Pagination = props => (
   <Query query={PAGINATION_QUERY}>
     {({ data, loading, error }) => {
       if (loading) return <p>Loading...</p>;
-      const count = data.formsConnection.aggregate.count;
+      const count = data ? data.formsConnection.aggregate.count : 0;
       const pages = Math.ceil(count / perPage);
       const page = props.page;
       return (

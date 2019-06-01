@@ -1,10 +1,11 @@
 import Reset from "../components/Reset";
+import Page from "../components/Page";
 
 const ResetPage = ({ query }) => (
-  <div>
+  <Page>
     <p>Reset Your Password</p>
     <Reset resetToken={query.resetToken} />
-  </div>
+  </Page>
 );
 
 export default ResetPage;

@@ -1,9 +1,9 @@
 import Forms from "../components/Forms";
-
+import Page from "../components/Page";
 const Home = ({ query }) => (
-  <div>
+  <Page>
     <Forms page={parseFloat(query.page) || 1} />
-  </div>
+  </Page>
 );
 
 export default Home;

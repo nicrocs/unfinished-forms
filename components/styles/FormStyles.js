@@ -1,23 +1,28 @@
 import styled from "styled-components";
 
 const Form = styled.div`
-  background: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("${props => props.background}");
   border: 1px solid ${props => props.theme.offWhite};
   box-shadow: ${props => props.theme.bs};
   position: relative;
   display: flex;
   flex-direction: column;
-  img {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
+  padding-top: 2rem;
+  .form-body {
+    background: ${props => props.theme.offWhite};
+    width: 80%;
+    margin: 0 auto;
+    text-align: left;
+    padding: 1rem;
   }
   p {
+    margin: 0;
     font-size: 12px;
     line-height: 2;
     font-weight: 300;
     flex-grow: 1;
-    padding: 0 3rem;
     font-size: 1.5rem;
   }
   .buttonList {

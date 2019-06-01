@@ -1,4 +1,5 @@
-import Signup from "../components/Signup";
+import Signin from "../components/Signin";
+import RequestReset from "../components/RequestReset";
 import styled from "styled-components";
 import Page from "../components/Page";
 
@@ -8,12 +9,12 @@ const Columns = styled.div`
   grid-gap: 20px;
 `;
 
-const SignupPage = props => (
+const SigninPage = props => (
   <Page>
     <Columns>
-      <Signup />
+      <Signin />
     </Columns>
   </Page>
 );
 
-export default SignupPage;
+export default SigninPage;

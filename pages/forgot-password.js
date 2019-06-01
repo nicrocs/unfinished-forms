@@ -1,4 +1,4 @@
-import Signup from "../components/Signup";
+import RequestReset from "../components/RequestReset";
 import styled from "styled-components";
 import Page from "../components/Page";
 
@@ -8,12 +8,12 @@ const Columns = styled.div`
   grid-gap: 20px;
 `;
 
-const SignupPage = props => (
+const ForgotPassword = props => (
   <Page>
     <Columns>
-      <Signup />
+      <RequestReset />
     </Columns>
   </Page>
 );
 
-export default SignupPage;
+export default ForgotPassword;

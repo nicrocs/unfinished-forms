@@ -2,16 +2,7 @@ import React from "react";
 import styled, { ThemeProvider, injectGlobal } from "styled-components";
 import Header from "./Header";
 import Meta from "./Meta";
-
-const theme = {
-  red: "#FF0000",
-  black: "#393939",
-  grey: "#3A3A3A",
-  lightgrey: "#E1E1E1",
-  offWhite: "#EDEDED",
-  maxWidth: "1000px",
-  bs: "0 12px 24px 0 rgba(0, 0, 0, 0.09)"
-};
+import { theme } from "../lib/theme";
 
 const StyledPage = styled.div`
   background: white;
@@ -25,15 +16,13 @@ const Inner = styled.div`
 `;
 
 injectGlobal`
-  @font-face {
-    font-family: 'radnika_next';
-    src: url('/static/radnikanext-medium-webfont.woff2') format('woff2');
+  html {
+    font-family: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji';
     font-weight: normal;
     font-style: normal;
-  }
-  html {
     box-sizing: border-box;
     font-size: 10px;
+    -webkit-font-smoothing: antialiased!important;
   }
   *, *:before, *:after {
     box-sizing: inherit;
@@ -43,13 +32,12 @@ injectGlobal`
     margin: 0;
     font-size: 1.5rem;
     line-height: 2;
-    font-family: 'radnika_next';
+    font-family: sans-serif;
   }
   a {
     text-decoration: none;
-    color: ${theme.black};
+    color: ${theme.darkgrey};
   }
-  button {  font-family: 'radnika_next'; }
 `;
 
 export default class Page extends React.Component {

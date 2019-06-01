@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
-import Form from "./styles/Form";
+import Form from "./styles/LoginStyles";
 import Error from "./ErrorMessage";
+import Input from "./Input";
 
 const REQUEST_RESET_MUTATION = gql`
   mutation REQUEST_RESET_MUTATION($email: String!) {
@@ -38,18 +39,13 @@ class RequestReset extends Component {
               {!error && !loading && called && (
                 <p>Success! Check your email for a reset link!</p>
               )}
-              <label htmlFor="email">
-                Email
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="email"
-                  value={this.state.email}
-                  onChange={this.saveToState}
-                />
-              </label>
-
-              <button type="submit">Request Reset!</button>
+              <Input
+                type="email"
+                label="email"
+                value={this.state.email}
+                onChange={this.saveToState}
+              />
+              <button type="submit">Request Reset</button>
             </fieldset>
           </Form>
         )}

@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
-import Form from "./styles/Form";
+import Link from "next/link";
+
+import Form from "./styles/LoginStyles";
 import Error from "./ErrorMessage";
 import { CURRENT_USER_QUERY } from "./User";
+import Input from "./Input";
 
 const SIGNIN_MUTATION = gql`
   mutation SIGNIN_MUTATION($email: String!, $password: String!) {
@@ -41,30 +44,24 @@ class Signin extends Component {
             }}
           >
             <fieldset disabled={loading} aria-busy={loading}>
-              <h2>Sign into your account</h2>
+              <h2>Sign In</h2>
               <Error error={error} />
-              <label htmlFor="email">
-                Email
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="email"
-                  value={this.state.email}
-                  onChange={this.saveToState}
-                />
-              </label>
-              <label htmlFor="password">
-                Password
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="password"
-                  value={this.state.password}
-                  onChange={this.saveToState}
-                />
-              </label>
-
-              <button type="submit">Sign In!</button>
+              <Input
+                type="email"
+                label="email"
+                value={this.state.email}
+                onChange={this.saveToState}
+              />
+              <Input
+                type="password"
+                label="password"
+                value={this.state.password}
+                onChange={this.saveToState}
+              />
+              <button type="submit">Sign In</button>
+              <Link href="/forgot-password">
+                <a>Forgot password?</a>
+              </Link>
             </fieldset>
           </Form>
         )}
