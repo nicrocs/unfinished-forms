@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import PropTypes from "prop-types";
-import Form from "./styles/Form";
+import Form from "./styles/LoginStyles";
 import Error from "./ErrorMessage";
 import { CURRENT_USER_QUERY } from "./User";
 
