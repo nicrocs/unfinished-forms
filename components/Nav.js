@@ -17,9 +17,6 @@ const Nav = () => (
           </Link>
           {me && (
             <>
-              <Link href="/create">
-                <a>Make</a>
-              </Link>
               <Link href="/me">
                 <a>Account</a>
               </Link>

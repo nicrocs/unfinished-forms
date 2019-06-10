@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { ThemeProvider, injectGlobal } from "styled-components";
+import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import Header from "./Header";
 import Meta from "./Meta";
 import { theme } from "../lib/theme";
@@ -15,7 +15,7 @@ const Inner = styled.div`
   padding: 2rem;
 `;
 
-injectGlobal`
+const GlobalStyles = createGlobalStyle`
   html {
     font-family: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji';
     font-weight: normal;
@@ -45,6 +45,7 @@ export default class Page extends React.Component {
     return (
       <ThemeProvider theme={theme}>
         <StyledPage>
+          <GlobalStyles />
           <Meta />
           <Header />
           <Inner>{this.props.children}</Inner>

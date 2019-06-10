@@ -40,8 +40,6 @@ function CreateForm() {
             const res = await createForm({
               variables: form
             });
-            // change them to the single item page
-            console.log(res);
             Router.push({
               pathname: "/form",
               query: { id: res.data.createForm.id }

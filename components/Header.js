@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import NProgress from "nprogress";
 import Router from "next/router";
 import Nav from "./Nav";
@@ -15,15 +15,6 @@ Router.onRouteChangeComplete = () => {
 Router.onRouteChangeError = () => {
   NProgress.done();
 };
-
-const blink = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: .6;
-  }
-`;
 
 const Logo = styled.h1`
   font-size: 4rem;
@@ -64,12 +55,6 @@ const Logo = styled.h1`
       top: 2px;
     }
   }
-  .blinking-cursor {
-    font-weight: 100;
-    font-size: 4rem;
-    color: ${props => props.theme.black};
-    animation: ${blink} 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
-  }
   @media (max-width: 1300px) {
     margin: 0;
     text-align: center;
@@ -107,10 +92,7 @@ const Header = () => (
     <div className="bar">
       <Logo>
         <Link href="/">
-          <a>
-            {/* <span class="blinking-cursor">|</span> */}
-            Unfinished Forms
-          </a>
+          <a>Unfinished Forms</a>
         </Link>
       </Logo>
       <Nav />

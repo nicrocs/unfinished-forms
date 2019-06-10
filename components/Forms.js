@@ -3,10 +3,14 @@ import { Query, Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import styled from "styled-components";
 import Router from "next/router";
+import { Plus } from "styled-icons/feather";
+
 import Form from "./Form";
 import Pagination from "./Pagination";
 import { perPage } from "../config";
 import Error from "./ErrorMessage";
+import FormStyles from "./styles/FormStyles";
+import Title from "./styles/Title";
 
 const ALL_FORMS_QUERY = gql`
   query ALL_FORMS_QUERY($skip: Int = 0, $first: Int = ${perPage}) {
@@ -52,6 +56,17 @@ const FormsList = styled.div`
   margin: 0 auto;
 `;
 
+export const IndigoPlus = styled(Plus)`
+  color: ${props => props.theme.indigo};
+  font-weight: bolder;
+  stroke-width: 3;
+  margin: 0 auto;
+`;
+
+export const PointerFormStyles = styled(FormStyles)`
+  cursor: pointer;
+`;
+
 class Forms extends Component {
   render() {
     return (
@@ -67,12 +82,9 @@ class Forms extends Component {
             if (error) return <p>Error: {error.message}</p>;
             return (
               <FormsList>
-                {data.forms.map(form => (
-                  <Form form={form} key={form.id} />
-                ))}
                 <Mutation mutation={CREATE_FORM_MUTATION}>
                   {(createForm, { loading, error }) => (
-                    <div
+                    <PointerFormStyles
                       onClick={async e => {
                         // Stop the form from submitting
                         e.preventDefault();
@@ -83,8 +95,6 @@ class Forms extends Component {
                             description: "Untitled Form Description"
                           }
                         });
-                        // change them to the single item page
-                        console.log(res);
                         Router.push({
                           pathname: "/edit",
                           query: { id: res.data.createForm.id }
@@ -92,10 +102,14 @@ class Forms extends Component {
                       }}
                     >
                       <Error error={error} />
-                      Create Form
-                    </div>
+                      <Title>New Form</Title>
+                      <IndigoPlus size={48} />
+                    </PointerFormStyles>
                   )}
                 </Mutation>
+                {data.forms.map(form => (
+                  <Form form={form} key={form.id} />
+                ))}
               </FormsList>
             );
           }}

@@ -11,7 +11,6 @@
     "build": "next build",
     "start": "next start -p $PORT",
     "test": "NODE_ENV=test jest --watch",
-    "test-win": "SET NODE_ENV=test&& jest --watch",
     "heroku-postbuild": "next build"
   },
   "author": "",
@@ -39,7 +38,8 @@
     "react-dom": "^16.5.2",
     "react-stripe-checkout": "^2.6.3",
     "react-transition-group": "^2.5.0",
-    "styled-components": "^3.4.9",
+    "styled-components": "^4.3.1",
+    "styled-icons": "^8.1.0",
     "uuid": "^3.3.2",
     "waait": "^1.0.2"
   },

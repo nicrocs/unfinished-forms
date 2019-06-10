@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 const loading = keyframes`
   from {
@@ -11,6 +11,8 @@ const loading = keyframes`
     /* rotate: 360deg; */
   }
 `;
+
+const loadingRule = css``;
 
 const LoginStyles = styled.form`
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.05);
