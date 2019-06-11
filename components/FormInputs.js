@@ -5,17 +5,7 @@ import Questions from "./Questions";
 import Form from "./styles/LoginStyles";
 import { formReducer } from "../lib/formReducers";
 
-const updateField = (e, dispatch) => {
-  dispatch({
-    type: "UPDATE_FIELD",
-    payload: {
-      name: e.target.name,
-      value: e.target.value
-    }
-  });
-};
-
-const uploadFile = async (e, dispatch) => {
+const uploadFile = async (e, updateData) => {
   const files = e.target.files;
   const data = new FormData();
   data.append("file", files[0]);
@@ -29,12 +19,9 @@ const uploadFile = async (e, dispatch) => {
     }
   );
   const file = await res.json();
-  dispatch({
-    type: "FILE_UPLOAD_SUCCESS",
-    payload: {
-      image: file.secure_url,
-      largeImage: file.eager[0].secure_url
-    }
+  updateData({
+    image: file.secure_url,
+    largeImage: file.eager[0].secure_url
   });
 };
 
@@ -46,14 +33,14 @@ const initialState = {
   questions: []
 };
 
-function FormInputs({ error, loading, submitData, formData, formId }) {
+function FormInputs({ error, loading, updateData, formData, formId }) {
   const [form, dispatch] = useReducer(formReducer, {
     ...initialState,
     ...formData
   });
   const { title, description, questions, largeImage } = form;
   return (
-    <Form onSubmit={e => submitData(e, form)} background={largeImage}>
+    <Form background={largeImage}>
       <Error error={error} />
       <fieldset disabled={loading} aria-busy={loading}>
         <label htmlFor="file">
@@ -63,26 +50,23 @@ function FormInputs({ error, loading, submitData, formData, formId }) {
             id="file"
             name="file"
             placeholder="Upload an image"
-            onChange={e => uploadFile(e, dispatch)}
+            onChange={e => uploadFile(e, updateData)}
           />
         </label>
         <Input
           type="text"
           label="title"
           required
-          value={title}
-          onChange={e => updateField(e, dispatch)}
+          defaultValue={title}
+          onBlur={e => updateData({ [e.target.name]: e.target.value })}
         />
         <Input
           type="text"
           label="description"
-          required
-          value={description}
-          onChange={updateField}
+          defaultValue={description}
+          onBlur={e => updateData({ [e.target.name]: e.target.value })}
         />
         <Questions formId={formId} />
-
-        <button type="submit">Submit</button>
       </fieldset>
     </Form>
   );

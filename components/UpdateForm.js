@@ -27,17 +27,23 @@ const UPDATE_FORM_MUTATION = gql`
     $id: ID!
     $title: String
     $description: String
+    $image: String
+    $largeImage: String
     $questions: [QuestionCreateWithoutFormInput]
   ) {
     updateForm(
       id: $id
       title: $title
       description: $description
+      image: $image
+      largeImage: $largeImage
       questions: $questions
     ) {
       id
       title
       description
+      image
+      largeImage
       questions {
         id
         question
@@ -49,16 +55,7 @@ const UPDATE_FORM_MUTATION = gql`
 `;
 
 function UpdateForm({ id }) {
-  const formFetched = data => {
-    console.log({ data });
-    dispatch({
-      type: "UPDATE_FORM",
-      payload: data.form
-    });
-  };
-
-  const updateForm = async (e, updateFormMutation, form) => {
-    e.preventDefault();
+  const updateForm = async (updateFormMutation, form) => {
     const res = await updateFormMutation({
       variables: {
         id,
@@ -66,8 +63,6 @@ function UpdateForm({ id }) {
       }
     });
   };
-
-  console.log({ id });
 
   return (
     <Query query={SINGLE_FORM_QUERY} variables={{ id }}>
@@ -81,9 +76,7 @@ function UpdateForm({ id }) {
                 error={error}
                 loading={loading}
                 formData={data.form}
-                submitData={(e, data) =>
-                  updateForm(e, updateFormMutation, data)
-                }
+                updateData={data => updateForm(updateFormMutation, data)}
                 formId={id}
               />
             )}

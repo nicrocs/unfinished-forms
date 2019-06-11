@@ -71,6 +71,7 @@ class SingleForm extends Component {
                     <div key={question.id}>
                       <h3>{question.question}</h3>
                       {question.type === "PARAGRAPH" && <textarea />}
+                      {question.type === "SHORTANSWER" && <input type="text" />}
                     </div>
                   );
                 })}
